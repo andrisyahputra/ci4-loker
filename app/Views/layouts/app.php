@@ -50,32 +50,37 @@
         <header class="site-navbar mt-3">
             <div class="container-fluid">
                 <div class="row align-items-center">
-                    <div class="site-logo col-6"><a href="<?= base_url() ?>assets/index.html">JobBoard</a></div>
+                    <div class="site-logo col-6"><a href="<?= base_url() ?>">INFO LOKER</a></div>
 
                     <nav class="mx-auto site-navigation">
                         <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                            <li><a href="<?= base_url() ?>assets/index.html" class="nav-link active">Home</a></li>
-                            <li><a href="<?= base_url() ?>assets/about.html">About</a></li>
-
-                            <li><a href="<?= base_url() ?>assets/profile.html">Profile</a></li>
-
-                            <li><a href="<?= base_url() ?>assets/contact.html">Contact</a></li>
+                            <li><a href="<?= base_url() ?>" class="nav-link active">Home</a></li>
+                            <li><a href="<?= url_to('about') ?>">About</a></li>
+                            <li><a href="<?= url_to('contact') ?>">Contact</a></li>
                             <?php if (isset(auth()->user()->username)): ?>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <?= auth()->user()->username ?>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="<?= base_url('logout') ?>">Keluar</a>
-                                </div>
-                            </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <?= auth()->user()->username ?>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="<?= url_to('users.public.profile') ?>">Public
+                                            Profile</a>
+                                        <a class="dropdown-item" href="<?= url_to('users.update.profile') ?>">Update
+                                            Profile</a>
+                                        <a class="dropdown-item" href="<?= url_to('users.update.cv') ?>">Update
+                                            CV</a>
+                                        <a class="dropdown-item" href="<?= url_to('users.save.loker') ?>">Loker
+                                            Tersimpan</a>
+                                        <a class="dropdown-item" href="<?= url_to('users.apply.loker') ?>">Loker
+                                            Terkirim</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="<?= base_url('logout') ?>">Keluar</a>
+                                    </div>
+                                </li>
                             <?php else: ?>
-                            <li class="d-lg-none"><a href="<?= base_url('login') ?>">Log In</a></li>
-                            <li class="d-lg-none"><a href="<?= base_url('register') ?>">
+                                <li class="d-lg-none"><a href="<?= base_url('login') ?>">Log In</a></li>
+                                <li class="d-lg-none"><a href="<?= base_url('register') ?>">
                                     <?php endif; ?>
                                     <span class="mr-2">+</span> Post
                                     a Job</a></li>
@@ -83,22 +88,22 @@
                     </nav>
 
                     <?php if (!isset(auth()->user()->username)): ?>
-                    <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
-                        <div class="ml-auto">
-                            <a href="<?= base_url() ?>"
-                                class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span
-                                    class="mr-2 icon-add"></span>Post a Job</a>
-                            <a href="<?= base_url('register') ?>"
-                                class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
-                                    class="mr-2 icon-lock_outline"></span>Register</a>
-                            <a href="<?= base_url('login') ?>"
-                                class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
-                                    class="mr-2 icon-lock_outline"></span>Log In</a>
+                        <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+                            <div class="ml-auto">
+                                <a href="<?= base_url() ?>"
+                                    class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span
+                                        class="mr-2 icon-add"></span>Post a Job</a>
+                                <a href="<?= base_url('register') ?>"
+                                    class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
+                                        class="mr-2 icon-lock_outline"></span>Register</a>
+                                <a href="<?= base_url('login') ?>"
+                                    class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
+                                        class="mr-2 icon-lock_outline"></span>Log In</a>
+                            </div>
+                            <a href="<?= base_url() ?>assets/#"
+                                class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span
+                                    class="icon-menu h3 m-0 p-0 mt-2"></span></a>
                         </div>
-                        <a href="<?= base_url() ?>assets/#"
-                            class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span
-                                class="icon-menu h3 m-0 p-0 mt-2"></span></a>
-                    </div>
                     <?php endif; ?>
 
                 </div>
@@ -111,7 +116,7 @@
 
         <footer class="site-footer">
 
-            <a href="<?= base_url() ?>assets/#top" class="smoothscroll scroll-top">
+            <a href="#top" class="smoothscroll scroll-top">
                 <span class="icon-keyboard_arrow_up"></span>
             </a>
 
@@ -162,7 +167,7 @@
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;
                                 <script>
-                                document.write(new Date().getFullYear());
+                                    document.write(new Date().getFullYear());
                                 </script> All rights reserved | This template is made with <i
                                     class="icon-heart text-danger" aria-hidden="true"></i> by <a
                                     href="https://colorlib.com" target="_blank">Colorlib</a>.
