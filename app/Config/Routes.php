@@ -35,4 +35,11 @@ $routes->post('admin/check-login', 'Admin\AdminController::checkLogin', ['as' =>
 $routes->group('admin', ['filter' => 'authfilter'], function ($routes) {
     $routes->get('dashboard', 'Admin\AdminController::index', ['as' => 'admin.index']);
     $routes->get('logout', 'Admin\AdminController::logout', ['as' => 'admin.logout']);
+
+
+    // admin super
+    $routes->get('all-admin', 'Admin\AdminController::displayAdmin', ['as' => 'admin.all']);
+    $routes->get('tambah-admin', 'Admin\AdminController::tambahAdmin', ['as' => 'admin.tambah']);
+    $routes->get('tambah-admin', 'Admin\AdminController::storeAdmin', ['as' => 'admin.store']);
+
 });

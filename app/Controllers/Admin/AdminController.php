@@ -9,10 +9,19 @@ use CodeIgniter\Shield\Models\UserModel;
 
 class AdminController extends BaseController
 {
+    public function __construct()
+    {
+        $this->db = \Config\Database::connect();
+    }
     public function index()
     {
         //
-        return view('admin/dashboard');
+
+        $totalLoker = $this->db->table("lokers")->countAllResults();
+        $totalKategori = $this->db->table("kategoris")->countAllResults();
+        $totalAdmin = $this->db->table("admins")->countAllResults();
+        $totalLamar = $this->db->table("applylokers")->countAllResults();
+        return view('admin/dashboard', compact('totalLoker', 'totalKategori', 'totalAdmin', 'totalLamar'));
     }
     public function login()
     {
@@ -65,4 +74,40 @@ class AdminController extends BaseController
 
 
     }
+    public function displayAdmin()
+    {
+        //
+        $judul = 'Halaman Admin';
+        $session = session();
+        $admin = new Admin();
+        $allAdmins = $admin->findAll();
+        return view('admin/admins/all-admin', compact('allAdmins', 'judul'));
+    }
+    public function tambahAdmin()
+    {
+        //
+        $judul = 'Tambah Admin';
+        // $session = session();
+        // $admin = new Admin();
+        // $allAdmins = $admin->findAll();
+        return view('admin/admins/tambah-admin', compact('judul'));
+    }
+    public function storeAdmin()
+    {
+        $admin = new Admin();
+        $data = [
+            "email" => $this->request->getPost('email'),
+            "password" => $this->request->getPost('password'),
+            "nama" => $this->request->getPost('nama'),
+            // "loker_id" => $id,
+            // "loker_id" => $this->request->getPost('id')
+        ];
+        $admin->save($data);
+        if ($admin) {
+            return redirect()->to(url_to('loker.detail', $id))->with('success', 'Berhasil Di simpan');
+        }
+
+        return view("loker/detail-kategori", compact("allloker", "totalLoker", "model"));
+    }
+
 }
