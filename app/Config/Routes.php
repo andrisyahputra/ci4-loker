@@ -29,7 +29,10 @@ $routes->group('users', function ($routes) {
     $routes->get('aplly-loker', 'Users\UsersController::usersApllyloker', ['as' => 'users.apply.loker']);
 });
 
+$routes->get('admin/login', 'Admin\AdminController::login', ['as' => 'admin.login', 'filter' => 'loginfilter']);
+$routes->post('admin/check-login', 'Admin\AdminController::checkLogin', ['as' => 'admin.cek.login']);
 
-$routes->group('admin', function ($routes) {
+$routes->group('admin', ['filter' => 'authfilter'], function ($routes) {
     $routes->get('dashboard', 'Admin\AdminController::index', ['as' => 'admin.index']);
+    $routes->get('logout', 'Admin\AdminController::logout', ['as' => 'admin.logout']);
 });

@@ -98,7 +98,7 @@
                                         class="mr-2 icon-lock_outline"></span>Register</a>
                                 <a href="<?= base_url('login') ?>"
                                     class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
-                                        class="mr-2 icon-lock_outline"></span>Log In</a>
+                                        class="mr-2 icon-lock_outline"></span>Log in</a>
                             </div>
                             <a href="<?= base_url() ?>assets/#"
                                 class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span
