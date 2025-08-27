@@ -5,6 +5,7 @@ namespace App\Controllers\Users;
 use App\Controllers\BaseController;
 use App\Models\Kategori\Kategori;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\Shield\Entities\User;
 
 class UsersController extends BaseController
 {
@@ -40,17 +41,18 @@ class UsersController extends BaseController
             return redirect()->to(base_url());
         }
         $id = auth()->user()->id;
-        $nama = $this->request->getPost('nama');
-        $email = $this->request->getPost('email');
-        $fb = $this->request->getPost('fb');
-        $twitter = $this->request->getPost('twitter');
-        $ig = $this->request->getPost('ig');
-        $bio = $this->request->getPost('bio');
-        $type = $this->request->getPost('type');
+        // dd($id);
+        // $nama = $this->request->getPost('nama');
+        // $email = $this->request->getPost('email');
+        // $fb = $this->request->getPost('fb');
+        // $twitter = $this->request->getPost('twitter');
+        // $ig = $this->request->getPost('ig');
+        // $bio = $this->request->getPost('bio');
+        // $type = $this->request->getPost('type');
 
 
         //
-        $id = auth()->user()->id;
+        // $id = auth()->user()->id;
         $nama = $this->request->getPost('nama');
         $email = $this->request->getPost('email');
         $fb = $this->request->getPost('fb');
@@ -65,8 +67,8 @@ class UsersController extends BaseController
             fb = '$fb',
             twitter = '$twitter',
             ig = '$ig',
-            bio = '$bio',
-         WHERE id = $id");
+            bio = '$bio'
+         WHERE id = '$id'");
         if ($updateUsers) {
             return redirect()->to(url_to('users.public.profile'))->with('success', 'Berhasil Di Update');
         }
@@ -85,15 +87,30 @@ class UsersController extends BaseController
             return redirect()->to(base_url());
         }
         $id = auth()->user()->id;
-        $img = $this->request->getFile('file');
-        $img->move('public/assets/' . 'cvs');
 
-        $fileName = $img->getPathname();
+        // $user = new User
+        $user = $this->db->query("SELECT * FROM users WHERE id = '$id' ORDER BY id DESC")->getFirstRow();
+        if ($user) {
+            // dd($user->cv);
+            $filePath = 'public/assets/cvs/' . $user->cv;
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+
+
+        $img = $this->request->getFile('cv');
+        // dd($img); 
+        $img->move('public/assets/cvs');
+
+        $fileName = $img->getClientName();
 
 
         $updateUsers = $this->db->query("UPDATE users SET 
             cv = '$fileName'
          WHERE id = $id");
+
+
         if ($updateUsers) {
             return redirect()->to(url_to('users.public.profile'))->with('success', 'CV Berhasil Di Update');
         }

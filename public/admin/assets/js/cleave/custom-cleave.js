@@ -3,7 +3,7 @@
   // Card number
   var cleave = new Cleave("#cleave-card-number", {
     creditCard: true,
-    onCreditCardTypeChanged: function (type) {},
+    onCreditCardTypeChanged: function (type) { },
   });
 
   // Date

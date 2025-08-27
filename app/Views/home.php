@@ -51,9 +51,10 @@
                         <div class="col-md-12 popular-keywords">
                             <h3>Trending Keywords:</h3>
                             <ul class="keywords list-unstyled m-0 p-0">
-                                <li><a href="<?= base_url() ?>assets/#" class="">UI Designer</a></li>
-                                <li><a href="<?= base_url() ?>assets/#" class="">Python</a></li>
-                                <li><a href="<?= base_url() ?>assets/#" class="">Developer</a></li>
+                                <?php foreach ($searches as $key => $value): ?>
+
+                                <li><a class=""><?= $value->keyword ?></a></li>
+                                <?php endforeach ?>
                             </ul>
                         </div>
                     </div>
@@ -126,27 +127,27 @@
 
         <ul class="job-listings mb-5">
             <?php foreach ($allloker as $loker): ?>
-                <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                    <a href="<?= url_to('loker.detail', $loker['id']) ?>"></a>
-                    <div class="job-listing-logo">
-                        <img src="<?= base_url() ?>assets/images/<?= $loker['logo_perusahaan'] ?>"
-                            alt="Free Website Template by Free-Template.co" class="img-fluid">
-                    </div>
+            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                <a href="<?= url_to('loker.detail', $loker['id']) ?>"></a>
+                <div class="job-listing-logo">
+                    <img src="<?= base_url() ?>assets/images/<?= $loker['logo_perusahaan'] ?>"
+                        alt="Free Website Template by Free-Template.co" class="img-fluid">
+                </div>
 
-                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                        <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                            <h2><?= $loker['judul'] ?></h2>
-                            <strong><?= $loker['nama_perusahaan'] ?></strong>
-                        </div>
-                        <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                            <span class="icon-room"></span> <?= $loker['lokasi'] ?>
-                        </div>
-                        <div class="job-listing-meta">
-                            <span class="badge badge-danger"><?= $loker['type'] ?></span>
-                        </div>
+                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                        <h2><?= $loker['judul'] ?></h2>
+                        <strong><?= $loker['nama_perusahaan'] ?></strong>
                     </div>
+                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                        <span class="icon-room"></span> <?= $loker['lokasi'] ?>
+                    </div>
+                    <div class="job-listing-meta">
+                        <span class="badge badge-danger"><?= $loker['type'] ?></span>
+                    </div>
+                </div>
 
-                </li>
+            </li>
             <?php endforeach; ?>
 
 

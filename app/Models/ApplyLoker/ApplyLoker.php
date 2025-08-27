@@ -25,7 +25,7 @@ class ApplyLoker extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat = 'datetime';
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
@@ -47,4 +47,11 @@ class ApplyLoker extends Model
     protected $afterFind = [];
     protected $beforeDelete = [];
     protected $afterDelete = [];
+
+    public function getWithLoker()
+    {
+        return $this->select('applylokers.id as id_apply,applylokers.*, lokers.*') // Adjust to the fields you want to select
+            ->join('lokers', 'lokers.id = applylokers.loker_id')
+            ->findAll();
+    }
 }

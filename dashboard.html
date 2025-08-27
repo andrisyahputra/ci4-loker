@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistem Pakar Diagnosis Penyakit Ubi Jalar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            background: #3b82f6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-logo svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .nav-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #3b82f6;
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .diagnosis-card .card-icon { background: #10b981; }
+        .reports-card .card-icon { background: #f59e0b; }
+        .rules-card .card-icon { background: #8b5cf6; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-title {
+                font-size: 16px;
+            }
+            
+            .main-container {
+                padding: 20px;
+            }
+            
+            .page-title {
+                font-size: 24px;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="nav-logo">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                    </svg>
+                </div>
+                <span class="nav-title">Sistem Pakar Ubi Jalar</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="diagnosis.html" class="nav-link">Diagnosis</a>
+                <a href="reports.html" class="nav-link">Laporan</a>
+                <a href="rules.html" class="nav-link">Aturan</a>
+            </div>
+            
+            <div class="nav-user">
+                <div class="user-avatar" id="userAvatar">A</div>
+                <button class="logout-btn" onclick="logout()">Keluar</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">Dashboard</h1>
+            <p class="page-subtitle">Sistem Pakar Diagnosis Penyakit Tanaman Ubi Jalar - Dinas Pertanian Kota Binjai</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card diagnosis-card" onclick="window.location.href='diagnosis.html'">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Mulai Diagnosis</h3>
+                <p class="card-description">Lakukan diagnosis penyakit tanaman ubi jalar berdasarkan gejala yang diamati menggunakan metode Certainty Factor.</p>
+            </div>
+
+            <div class="dashboard-card reports-card" onclick="window.location.href='reports.html'">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Laporan Hasil</h3>
+                <p class="card-description">Lihat dan kelola laporan hasil diagnosis yang telah dilakukan sebelumnya.</p>
+            </div>
+
+            <div class="dashboard-card rules-card" onclick="window.location.href='rules.html'">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Kelola Aturan</h3>
+                <p class="card-description">Tambah, edit, atau hapus aturan diagnosis dan basis pengetahuan sistem pakar.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        //if (!localStorage.getItem('isLoggedIn')) {
+        //    window.location.href = 'login.html';
+         //}
+
+        // Set user avatar
+        //const username = localStorage.getItem('username') || 'User';
+        // document.getElementById('userAvatar').textContent = username.charAt(0).toUpperCase();
+
+        //function logout() {
+         //   localStorage.removeItem('isLoggedIn');
+          //  localStorage.removeItem('username');
+           // window.location.href = 'login.html';
+        //}
+    </script>
+</body>
+</html>

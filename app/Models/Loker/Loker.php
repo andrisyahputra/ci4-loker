@@ -28,6 +28,10 @@ class Loker extends Model
         'tanggung_jawab',
         'pendidikan_terakhir',
         'manfaat_lainnya',
+        'id_kategori',
+        'email',
+        'gambar',
+        'logo_perusahaan'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -37,7 +41,7 @@ class Loker extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat = 'datetime';
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';

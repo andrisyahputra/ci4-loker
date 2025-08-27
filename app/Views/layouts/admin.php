@@ -34,8 +34,10 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>admin/assets/css/vendors/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>admin/assets/css/vendors/animate.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>admin/assets/css/vendors/datatables.css">
-    <link rel="stylesheet" type="text/css"
-        href="<?= base_url() ?>admin/assets/css/vendors/date-range-picker/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>admin//assets/css/vendors/date-picker.css">
+    <!-- <link rel="stylesheet" type="text/css"
+        href="<?= base_url() ?>admin/assets/css/vendors/date-range-picker/flatpickr.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>admin/assets/css/vendors/dropzone.css">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>admin/assets/css/vendors/bootstrap.css">
@@ -44,6 +46,14 @@
     <link id="color" rel="stylesheet" href="<?= base_url() ?>admin/assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>admin/assets/css/responsive.css">
+
+
+
+    <!-- <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/dropzone.css"> -->
 
     <!-- <link rel="stylesheet" type="text/css" href="<= base_url() ?>admin/assets/css/font-awesome.css"> -->
     <!-- ico-font-->
@@ -464,7 +474,8 @@
                                             </use>
                                         </svg><span>Dashboard</span></a></li>
                                 <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a
-                                        class="sidebar-link sidebar-title link-nav" href="<?= url_to('admin.all') ?>">
+                                        class="sidebar-link sidebar-title link-nav"
+                                        href="<?= url_to('admins.index') ?>">
                                         <svg class="stroke-icon">
                                             <use href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#stroke-file">
                                             </use>
@@ -474,7 +485,8 @@
                                             </use>
                                         </svg><span>Admin</span></a></li>
                                 <li class="sidebar-list"><i class="fa fa-thumb-tack"> </i><a
-                                        class="sidebar-link sidebar-title link-nav" href="<?= url_to('admin.index') ?>">
+                                        class="sidebar-link sidebar-title link-nav"
+                                        href="<?= url_to('kategori.index') ?>">
                                         <svg class="stroke-icon">
                                             <use href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#stroke-board">
                                             </use>
@@ -484,7 +496,7 @@
                                             </use>
                                         </svg><span>Kategori</span></a></li>
                                 <li class="sidebar-list"><i class="fa fa-thumb-tack"> </i><a
-                                        class="sidebar-link sidebar-title link-nav" href="<?= url_to('admin.index') ?>">
+                                        class="sidebar-link sidebar-title link-nav" href="<?= url_to('loker.index') ?>">
                                         <svg class="stroke-icon">
                                             <use href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#stroke-board">
                                             </use>
@@ -494,7 +506,8 @@
                                             </use>
                                         </svg><span>Loker</span></a></li>
                                 <li class="sidebar-list"><i class="fa fa-thumb-tack"> </i><a
-                                        class="sidebar-link sidebar-title link-nav" href="<?= url_to('admin.index') ?>">
+                                        class="sidebar-link sidebar-title link-nav"
+                                        href="<?= url_to('loker.apply.index') ?>">
                                         <svg class="stroke-icon">
                                             <use href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#stroke-board">
                                             </use>
@@ -502,7 +515,7 @@
                                         <svg class="fill-icon">
                                             <use href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#fill-board">
                                             </use>
-                                        </svg><span>Aplikasi</span></a></li>
+                                        </svg><span>Aplly Loker</span></a></li>
 
                             </ul>
                         </div>
@@ -540,6 +553,11 @@
     </div>
     <!-- latest jquery-->
     <script src="<?= base_url() ?>admin/assets/js/jquery.min.js"></script>
+
+    <!-- <script src="<= base_url() ?>admin/assets/js/editor/ckeditor/adapters/jquery.js"></script> -->
+
+    <script src="<?= base_url() ?>admin/assets/js/dashboard/dashboard_2.js"></script>
+
     <!-- Bootstrap js-->
     <script src="<?= base_url() ?>admin/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
     <!-- feather icon js-->
@@ -579,7 +597,6 @@
     <script src="<?= base_url() ?>admin/assets/js/height-equal.js"></script>
     <script src="<?= base_url() ?>admin/assets/js/animation/wow/wow.min.js"></script>
 
-    <script src="<?= base_url() ?>admin/assets/js/dashboard/dashboard_2.js"></script>
 
     <script src="<?= base_url() ?>admin/assets/js/datatable/datatable-extension/jszip.min.js"></script>
 
@@ -608,15 +625,52 @@
     <script src="<?= base_url() ?>admin/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
     <script src="<?= base_url() ?>admin/assets/js/select2/select2.full.min.js"></script>
     <script src="<?= base_url() ?>admin/assets/js/select2/select2-custom.js"></script>
+
+    <script src="<?= base_url() ?>admin/assets/js/editor/ckeditor/ckeditor.js"></script>
+    <script src="<?= base_url() ?>admin//assets/js/editor/ckeditor/ckeditor.custom.js"></script>
+    <script src="<?= base_url() ?>admin/assets/js/email-app.js"></script>
+
+
+    <!-- <script src="../assets/js/datepicker/date-picker/datepicker.js"></script>
+    <script src="../assets/js/datepicker/date-picker/datepicker.en.js"></script>
+    <script src="../assets/js/datepicker/date-picker/datepicker.custom.js"></script> -->
+
+
+    <script src="<?= base_url() ?>admin/assets/js/dropzone/dropzone.js"></script>
+    <script src="<?= base_url() ?>admin/assets/js/dropzone/dropzone-script.js"></script>
+    <!-- <script src="<= base_url() ?>admin/assets/js/form-wizard/form-wizard.js"></script> -->
+    <!-- <script src="<= base_url() ?>admin/assets/js/form-wizard/image-upload.js"></script> -->
+
+    <script src="<?= base_url() ?>admin/assets/js/cleave/cleave.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var cleave = new Cleave('#myInput', {
+                // Cleave options 
+                numeral: true,
+            });
+        });
+
+        // Replace '#myInput' with the correct selector for your input element.
+    </script>
+
+
+    <!-- <script src="<= base_url() ?>admin/assets/js/cleave/custom-cleave.js"></script> -->
+
+    <!-- <script src="<= base_url() ?>admin/assets/js/height-equal.js"></script> -->
+    <!-- <script src="../assets/js/typeahead/handlebars.js"></script> -->
+    <!-- <script src="../assets/js/typeahead/typeahead.bundle.js"></script>
+    <script src="../assets/js/typeahead/typeahead.custom.js"></script>
+    <script src="../assets/js/typeahead-search/handlebars.js"></script>
+    <script src="../assets/js/typeahead-search/typeahead-custom.js"></script> -->
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="<?= base_url() ?>admin/assets/js/script.js"></script>
-    <script src="<?= base_url() ?>admin/assets/js/theme-customizer/customizer.js"></script>
+    <!-- <script src="<= base_url() ?>admin/assets/js/theme-customizer/customizer.js"></script> -->
     <!-- Plugin used-->
     <script>
-    new WOW().init();
+        new WOW().init();
     </script>
 </body>
 

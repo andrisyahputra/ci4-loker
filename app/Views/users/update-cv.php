@@ -29,7 +29,7 @@
                     <div class="row form-group">
                         <div class="col-md-12 mb-3 mb-md-0">
                             <label class="text-black" for="file">CV</label>
-                            <input name="file" type="file" id="file" class="form-control" placeholder="Masukkan Nama">
+                            <input type="file" id="file" class="form-control" name="cv">
                         </div>
                     </div>
 

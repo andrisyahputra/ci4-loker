@@ -7,6 +7,7 @@ use App\Models\ApplyLoker\ApplyLoker;
 use App\Models\Kategori\Kategori;
 use App\Models\Loker\Loker;
 use App\Models\SaveLoker\SaveLoker;
+use App\Models\Search\Search;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class LokerController extends BaseController
@@ -93,6 +94,14 @@ class LokerController extends BaseController
         $judul = $this->request->getPost('judul');
         $lokasi = $this->request->getPost('lokasi');
         $type = $this->request->getPost('type');
+
+        $admin = new Search();
+        $data = [
+            "keyword" => $this->request->getPost('judul'),
+            // "loker_id" => $id,
+            // "loker_id" => $this->request->getPost('id')
+        ];
+        $admin->save($data);
 
         $search = $loker->like('judul', $judul)
             ->like('lokasi', $lokasi)
