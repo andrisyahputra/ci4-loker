@@ -19,6 +19,14 @@ $routes->group('loker', function ($routes) {
     $routes->post('apply-loker/(:num)', 'Loker\LokerController::applyLoker/$1', ['as' => 'apply.loker']);
     $routes->post('cari-loker', 'Loker\LokerController::cariLoker', ['as' => 'cari.loker']);
 });
+$routes->group('admin', function ($routes) {
+
+    $routes->get('detail/(:num)', 'Loker\LokerController::detail/$1', ['as' => 'loker.detail']);
+    $routes->get('kategori/(:num)', 'Loker\LokerController::kategori/$1', ['as' => 'loker.kategori']);
+    $routes->post('save-loker/(:num)', 'Loker\LokerController::saveLoker/$1', ['as' => 'save.loker']);
+    $routes->post('apply-loker/(:num)', 'Loker\LokerController::applyLoker/$1', ['as' => 'apply.loker']);
+    $routes->post('cari-loker', 'Loker\LokerController::cariLoker', ['as' => 'cari.loker']);
+});
 $routes->group('users', function ($routes) {
     $routes->get('diagnosis', 'Users\UsersController::diagnosis', ['as' => 'users.public.profile']);
     // $routes->get('public-profile', 'Users\UsersController::publicProfile', ['as' => 'users.public.profile']);
@@ -31,6 +39,7 @@ $routes->group('users', function ($routes) {
 });
 
 $routes->get('admin/login', 'Admin\AdminController::login', ['as' => 'admin.login', 'filter' => 'loginfilter']);
+$routes->get('admin/register', 'Admin\AdminController::register', ['as' => 'admin.register', 'filter' => 'loginfilter']);
 $routes->post('admin/check-login', 'Admin\AdminController::checkLogin', ['as' => 'admin.cek.login']);
 
 $routes->group('admin', ['filter' => 'authfilter'], function ($routes) {
@@ -42,24 +51,29 @@ $routes->group('admin', ['filter' => 'authfilter'], function ($routes) {
     $routes->get('all-admin', 'Admin\AdminController::displayAdmin', ['as' => 'admins.index']);
     $routes->get('tambah-admin', 'Admin\AdminController::tambahAdmin', ['as' => 'admins.tambah']);
     $routes->post('tambah-admin', 'Admin\AdminController::storeAdmin', ['as' => 'admins.store']);
-    // kategori 
-    $routes->get('all-kategori', 'Admin\AdminController::displaykategori', ['as' => 'kategori.index']);
-    $routes->get('tambah-kategori', 'Admin\AdminController::tambahKategori', ['as' => 'kategori.tambah']);
-    $routes->post('tambah-kategori', 'Admin\AdminController::storeKategori', ['as' => 'kategori.store']);
-    $routes->get('edit-kategori/(:num)', 'Admin\AdminController::editKategori/$1', ['as' => 'kategori.edit']);
-    $routes->post('edit-kategori/(:num)', 'Admin\AdminController::updateKategori/$1', ['as' => 'kategori.update']);
-    $routes->get('hapus-kategori/(:num)', 'Admin\AdminController::hapusKategori/$1', ['as' => 'kategori.hapus']);
 
-    // loker
-    $routes->get('all-loker', 'Admin\AdminController::displayLoker', ['as' => 'loker.index']);
-    $routes->get('tambah-loker', 'Admin\AdminController::tambahLoker', ['as' => 'loker.tambah']);
-    $routes->post('tambah-loker', 'Admin\AdminController::storeLoker', ['as' => 'loker.store']);
+    $routes->get('all-gejala', 'Admin\AdminController::displayGejala', ['as' => 'gejala.index']);
+    $routes->get('tambah-gejala', 'Admin\AdminController::tambahGejala', ['as' => 'gejala.tambah']);
+    $routes->post('tambah-gejala', 'Admin\AdminController::storeGejala', ['as' => 'gejala.store']);
+    $routes->get('edit-gejala/(:any)', 'Admin\AdminController::editGejala/$1', ['as' => 'gejala.edit']);
+    $routes->post('edit-gejala/(:any)', 'Admin\AdminController::updateGejala/$1', ['as' => 'gejala.update']);
+    $routes->get('hapus-gejala/(:any)', 'Admin\AdminController::hapusGejala/$1', ['as' => 'gejala.hapus']);
 
-    $routes->get('hapus-loker/(:num)', 'Admin\AdminController::hapusLoker/$1', ['as' => 'loker.hapus']);
+    $routes->get('all-diagnosis', 'Admin\DiagnosisController::displayDiagnosis', ['as' => 'diagnosis.index']);
+    $routes->get('diagnosis', 'Admin\DiagnosisController::Diagnosis', ['as' => 'admin.diagnosis']);
 
-    // apply loker
-    $routes->get('all-applyloker', 'Admin\AdminController::displayApplyLoker', ['as' => 'loker.apply.index']);
+    $routes->get('tambah-diagnosis', 'Admin\DiagnosisController::tambahDiagnosis', ['as' => 'diagnosis.tambah']);
+    $routes->post('tambah-diagnosis', 'Admin\DiagnosisController::storeDiagnosis', ['as' => 'diagnosis.store']);
+    $routes->get('edit-diagnosis/(:any)', 'Admin\DiagnosisController::editDiagnosis/$1', ['as' => 'diagnosis.edit']);
+    $routes->post('edit-diagnosis/(:any)', 'Admin\DiagnosisController::updateDiagnosis/$1', ['as' => 'diagnosis.update']);
+    $routes->get('hapus-diagnosis/(:any)', 'Admin\DiagnosisController::hapusDiagnosis/$1', ['as' => 'diagnosis.hapus']);
 
-    $routes->get('hapus-applyloker/(:num)', 'Admin\AdminController::hapusApplyLoker/$1', ['as' => 'loker.apply.hapus']);
 
+    // New AJAX routes
+    $routes->get('getSymptomsData', 'Admin\DiagnosisController::getSymptomsData', ['as' => 'diagnosis.symptoms']);
+    $routes->get('getDiseasesData', 'Admin\DiagnosisController::getDiseasesData', ['as' => 'diagnosis.diseases']);
+    $routes->post('processDiagnosis', 'Admin\DiagnosisController::processDiagnosis', ['as' => 'diagnosis.process']);
+    $routes->post('saveDiagnosisResult', 'Admin\DiagnosisController::saveDiagnosisResult', ['as' => 'diagnosis.save']);
+    $routes->get('searchDiagnosis', 'Admin\DiagnosisController::searchDiagnosis', ['as' => 'diagnosis.search']);
+    $routes->get('diagnosisDetail/(:any)', 'Admin\DiagnosisController::getDiagnosisDetail/$1', ['as' => 'diagnosis.detail']);
 });

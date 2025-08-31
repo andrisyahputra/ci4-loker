@@ -31637,8 +31637,10 @@ ul.dot-group li {
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0 auto;
-  background: url("../images/login/login_bg.jpg");
+  background: url("../../../assets/images/tugu_binjai.jpg") no-repeat;
   background-position: center;
+  background-size: cover; /* Added to make image cover full area */
+  background-attachment: fixed; /* Optional: keeps background fixed while scrolling */
   padding: 30px 12px;
 }
 .login-card .logo {

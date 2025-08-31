@@ -28,7 +28,13 @@ class LoginFilter implements FilterInterface
         //
 
         if (session()->get('isLoggedIn')) {
-            return redirect()->to(url_to('admin.index'));
+            // return redirect()->to(url_to('admin.index'));
+            if (session('role') == 'admin') {
+                return redirect()->to(url_to('admin.index'));
+            } else {
+                return redirect()->to(url_to('admin.diagnosis'));
+            }
+
         }
     }
 

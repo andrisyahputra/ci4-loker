@@ -1,0 +1,768 @@
+<?= $this->extend('layouts/admin.php'); ?>
+
+<?= $this->section('content'); ?>
+
+
+<!-- Added sweet potato plant banner section -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card overflow-hidden">
+            <div class="card-body p-0">
+                <div class="position-relative"
+                    style="height: 200px; background: linear-gradient(135deg, #059669 0%, #10b981 100%);">
+                    <img src="<?= base_url() ?>assets/images/walpaper.jpg" width="1200" height="200"
+                        alt="Tanaman Ubi Jalar" class="w-100 h-100 object-cover position-absolute"
+                        style="object-fit: cover; opacity: 0.3;">
+                    <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+                        <h2 class="fw-bold mb-2">Sistem Pakar Diagnosis Penyakit Ubi Jalar</h2>
+                        <!-- <p class="mb-0 fs-5">Dinas Ketahanan Pangan dan Pertanian Kota Binjai</p> -->
+                        <p class="mb-0 fs-5">Masukkan gejala yang diamati untuk mendapatkan diagnosis menggunakan metode
+                            Certainty Factor</p>
+                        <div class="mt-3">
+                            <span class="badge bg-light text-dark px-3 py-2 me-2">
+                                <i class="fa fa-leaf me-1"></i> Teknologi Pertanian Modern
+                            </span>
+                            <span class="badge bg-light text-dark px-3 py-2">
+                                <i class="fa fa-microscope me-1"></i> Diagnosis Akurat
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        min-height: 100vh;
+        color: #334155;
+    }
+
+    .header {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #1e40af;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #64748b;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: #1e40af;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .page-title h1 {
+        font-size: 2.5rem;
+        color: #1e40af;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-title p {
+        color: #64748b;
+        font-size: 1.1rem;
+    }
+
+    .diagnosis-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .symptoms-section,
+    .patient-info {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        color: #1e40af;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #374151;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #3b82f6;
+    }
+
+    .symptom-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        background: #f8fafc;
+    }
+
+    .symptom-info {
+        flex: 1;
+    }
+
+    .symptom-code {
+        font-weight: 600;
+        color: #1e40af;
+        font-size: 0.9rem;
+    }
+
+    .symptom-name {
+        color: #374151;
+        margin-top: 0.25rem;
+    }
+
+    .symptom-input {
+        width: 120px;
+        margin-left: 1rem;
+    }
+
+    .btn {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background: #64748b;
+    }
+
+    .btn-secondary:hover {
+        background: #475569;
+    }
+
+    .action-buttons {
+        text-align: center;
+        margin-top: 2rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .results-section {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin-top: 2rem;
+        display: none;
+    }
+
+    .results-section.show {
+        display: block;
+    }
+
+    .diagnosis-result {
+        text-align: center;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+    }
+
+    .diagnosis-result.high {
+        background: #fee2e2;
+        border: 2px solid #fca5a5;
+    }
+
+    .diagnosis-result.medium {
+        background: #fef3c7;
+        border: 2px solid #fcd34d;
+    }
+
+    .diagnosis-result.low {
+        background: #dcfce7;
+        border: 2px solid #86efac;
+    }
+
+    .cf-value {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .disease-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .confidence-level {
+        font-size: 1.1rem;
+        opacity: 0.8;
+    }
+
+    .recommendations {
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .recommendations h4 {
+        color: #0369a1;
+        margin-bottom: 1rem;
+    }
+
+    .recommendations ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .recommendations li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e0f2fe;
+    }
+
+    .recommendations li:last-child {
+        border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+        .diagnosis-container {
+            grid-template-columns: 1fr;
+        }
+
+        .container {
+            padding: 1rem;
+        }
+
+        .page-title h1 {
+            font-size: 2rem;
+        }
+
+        .action-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .symptom-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .symptom-input {
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-0">
+                    <!-- Added modern alert styling -->
+                    <?php if (session()->getFlashdata('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show m-3 mb-0" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <strong>Berhasil!</strong> <?= session()->getFlashdata('success') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (session()->getFlashdata('error')): ?>
+                        <div class="alert alert-danger alert-dismissible fade show m-3 mb-0" role="alert">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            <strong>Gagal!</strong> <?= session()->getFlashdata('error') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    <?php endif; ?>
+
+
+
+                    <div class="diagnosis-container">
+                        <div class="patient-info">
+                            <h3 class="section-title">
+                                <span>📋</span>
+                                Informasi Pasien
+                            </h3>
+                            <form id="patientForm">
+                                <div class="form-group">
+                                    <label for="patientName">Nama Petani</label>
+                                    <input type="text" id="patientName" name="patientName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="farmLocation">Alamat Lahan</label>
+                                    <input type="text" id="farmLocation" name="farmLocation" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="farmSize">Luas Lahan (Ha)</label>
+                                    <input type="number" id="farmSize" name="farmSize" step="0.1" required>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="symptoms-section">
+                            <h3 class="section-title">
+                                <span>🔍</span>
+                                Input Nilai Gejala
+                            </h3>
+                            <p style="margin-bottom: 1.5rem; color: #64748b;">
+                                Masukkan nilai kepercayaan (0.0 - 1.0) untuk setiap gejala yang diamati
+                            </p>
+
+                            <div id="symptomsContainer">
+                                <!-- Symptoms will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn" onclick="performDiagnosis()">
+                            <span>🔬</span>
+                            Lakukan Diagnosis
+                        </button>
+                        <button class="btn btn-secondary" onclick="resetForm()">
+                            <span>🔄</span>
+                            Reset Form
+                        </button>
+                        <button class="btn btn-secondary" onclick="printResults()" id="printBtn" style="display: none;">
+                            <span>🖨️</span>
+                            Cetak Hasil
+                        </button>
+                    </div>
+
+                    <div class="results-section" id="resultsSection">
+                        <h3 class="section-title">
+                            <span>📊</span>
+                            Hasil Diagnosis
+                        </h3>
+                        <div id="diagnosisResults">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Symptom data from admin configuration
+    const symptoms = [{
+        code: 'G01',
+        name: 'Daun menguning',
+        mb: 0.8,
+        md: 0.1
+    },
+    {
+        code: 'G02',
+        name: 'Daun layu',
+        mb: 0.7,
+        md: 0.2
+    },
+    {
+        code: 'G03',
+        name: 'Batang membusuk',
+        mb: 0.9,
+        md: 0.05
+    },
+    {
+        code: 'G04',
+        name: 'Umbi membusuk',
+        mb: 0.95,
+        md: 0.02
+    },
+    {
+        code: 'G05',
+        name: 'Bau busuk pada umbi',
+        mb: 0.9,
+        md: 0.05
+    },
+    {
+        code: 'G06',
+        name: 'Bercak coklat pada daun',
+        mb: 0.8,
+        md: 0.1
+    },
+    {
+        code: 'G07',
+        name: 'Daun mengering',
+        mb: 0.75,
+        md: 0.15
+    },
+    {
+        code: 'G08',
+        name: 'Pertumbuhan terhambat',
+        mb: 0.6,
+        md: 0.3
+    },
+    {
+        code: 'G09',
+        name: 'Bercak hitam pada umbi',
+        mb: 0.85,
+        md: 0.1
+    },
+    {
+        code: 'G10',
+        name: 'Permukaan umbi kasar',
+        mb: 0.8,
+        md: 0.15
+    },
+    {
+        code: 'G11',
+        name: 'Luka pada kulit umbi',
+        mb: 0.7,
+        md: 0.2
+    },
+    {
+        code: 'G12',
+        name: 'Umbi retak-retak',
+        mb: 0.75,
+        md: 0.2
+    },
+    {
+        code: 'G13',
+        name: 'Akar membusuk',
+        mb: 0.8,
+        md: 0.1
+    },
+    {
+        code: 'G14',
+        name: 'Tanaman mudah dicabut',
+        mb: 0.7,
+        md: 0.2
+    },
+    {
+        code: 'G15',
+        name: 'Hasil panen menurun',
+        mb: 0.6,
+        md: 0.3
+    }
+    ];
+
+    // Disease data with rules
+    const diseases = {
+        'P01': {
+            name: 'Penyakit Busuk Umbi',
+            symptoms: ['G03', 'G04', 'G05', 'G13', 'G14'],
+            recommendations: [
+                'Perbaiki drainase lahan untuk mengurangi kelembaban berlebih',
+                'Gunakan bibit yang sehat dan bebas penyakit',
+                'Aplikasikan fungisida berbahan aktif mankozeb atau metalaksil',
+                'Lakukan rotasi tanaman dengan tanaman non-solanaceae',
+                'Panen dilakukan saat cuaca kering untuk mengurangi risiko infeksi'
+            ]
+        },
+        'P02': {
+            name: 'Penyakit Hawar Daun',
+            symptoms: ['G01', 'G02', 'G06', 'G07', 'G08'],
+            recommendations: [
+                'Semprot dengan fungisida berbahan aktif klorotalonil atau mankozeb',
+                'Tingkatkan sirkulasi udara dengan pengaturan jarak tanam',
+                'Buang dan musnahkan daun yang terinfeksi',
+                'Aplikasikan pupuk kalium untuk meningkatkan ketahanan tanaman',
+                'Hindari penyiraman pada daun, siram langsung ke tanah'
+            ]
+        },
+        'P03': {
+            name: 'Penyakit Kudis (Scab)',
+            symptoms: ['G09', 'G10', 'G11', 'G12', 'G15'],
+            recommendations: [
+                'Gunakan varietas tahan penyakit kudis',
+                'Atur pH tanah antara 5.2-5.5 untuk mengurangi aktivitas patogen',
+                'Aplikasikan kapur pertanian untuk mengatur pH tanah',
+                'Lakukan sanitasi lahan dengan membersihkan sisa tanaman',
+                'Gunakan mulsa organik untuk menjaga kelembaban tanah yang stabil'
+            ]
+        }
+    };
+
+    function initializeSymptoms() {
+        const container = document.getElementById('symptomsContainer');
+        container.innerHTML = '';
+
+        symptoms.forEach(symptom => {
+            const cf = ((symptom.mb - symptom.md) * 1).toFixed(3);
+            const symptomDiv = document.createElement('div');
+            symptomDiv.className = 'symptom-item';
+            symptomDiv.innerHTML = `
+                    <div class="symptom-info">
+                        <div class="symptom-code">${symptom.code}</div>
+                        <div class="symptom-name">${symptom.name}</div>
+                        <small style="color: #64748b;">CF: ${cf}</small>
+                    </div>
+                    <select class="symptom-input form-select w-50" id="${symptom.code}">
+                        <option value="0">Tidak</option>
+                        <option value="0.2">Tidak Tahu</option>
+                        <option value="0.4">Sedikit Yakin</option>
+                        <option value="0.6">Cukup Yakin</option>
+                        <option value="0.8">Yakin</option>
+                        <option value="1.0">Sangat Yakin</option>
+                    </select>
+                `;
+            container.appendChild(symptomDiv);
+        });
+    }
+
+    // Calculate Certainty Factor
+    function calculateCF(userValue, mb, md) {
+        if (userValue === 0) return 0;
+        const cf = (mb - md) * userValue;
+        return Math.max(-1, Math.min(1, cf));
+    }
+
+    // Combine multiple CF values
+    function combineCF(cf1, cf2) {
+        if (cf1 > 0 && cf2 > 0) {
+            return cf1 + cf2 - (cf1 * cf2);
+        } else if (cf1 < 0 && cf2 < 0) {
+            return cf1 + cf2 + (cf1 * cf2);
+        } else {
+            return (cf1 + cf2) / (1 - Math.min(Math.abs(cf1), Math.abs(cf2)));
+        }
+    }
+
+    // Perform diagnosis
+    function performDiagnosis() {
+        // Validate patient info
+        const patientName = document.getElementById('patientName').value;
+        const farmLocation = document.getElementById('farmLocation').value;
+        const farmSize = document.getElementById('farmSize').value;
+
+        if (!patientName || !farmLocation || !farmSize) {
+            alert('Mohon lengkapi informasi pasien terlebih dahulu!');
+            return;
+        }
+
+        // Get user input values
+        const userInputs = {};
+        let hasInput = false;
+
+        symptoms.forEach(symptom => {
+            const input = document.getElementById(symptom.code);
+            const value = parseFloat(input.value) || 0;
+            userInputs[symptom.code] = value;
+            if (value > 0) hasInput = true;
+        });
+
+        if (!hasInput) {
+            alert('Mohon masukkan minimal satu nilai gejala!');
+            return;
+        }
+
+        // Calculate CF for each disease
+        const results = {};
+
+        Object.keys(diseases).forEach(diseaseCode => {
+            const disease = diseases[diseaseCode];
+            let combinedCF = 0;
+            let firstCF = true;
+
+            disease.symptoms.forEach(symptomCode => {
+                const userValue = userInputs[symptomCode] || 0;
+                if (userValue > 0) {
+                    const symptom = symptoms.find(s => s.code === symptomCode);
+                    const cf = calculateCF(userValue, symptom.mb, symptom.md);
+
+                    if (firstCF) {
+                        combinedCF = cf;
+                        firstCF = false;
+                    } else {
+                        combinedCF = combineCF(combinedCF, cf);
+                    }
+                }
+            });
+
+            results[diseaseCode] = {
+                name: disease.name,
+                cf: combinedCF,
+                percentage: Math.abs(combinedCF * 100),
+                recommendations: disease.recommendations
+            };
+        });
+
+        // Display results
+        displayResults(results, {
+            patientName,
+            farmLocation,
+            farmSize
+        });
+    }
+
+    // Display diagnosis results
+    function displayResults(results, patientInfo) {
+        const resultsSection = document.getElementById('resultsSection');
+        const resultsContainer = document.getElementById('diagnosisResults');
+
+        // Sort results by CF value
+        const sortedResults = Object.entries(results)
+            .sort(([, a], [, b]) => Math.abs(b.cf) - Math.abs(a.cf));
+
+        let html = `
+                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <h4 style="color: #1e40af; margin-bottom: 1rem;">Informasi Pasien</h4>
+                    <p><strong>Nama:</strong> ${patientInfo.patientName}</p>
+                    <p><strong>Alamat Lahan:</strong> ${patientInfo.farmLocation}</p>
+                    <p><strong>Luas Lahan:</strong> ${patientInfo.farmSize} Ha</p>
+                </div>
+            `;
+
+        sortedResults.forEach(([code, result]) => {
+            const percentage = result.percentage;
+            let resultClass = 'low';
+            let confidenceText = 'Kemungkinan Rendah';
+
+            if (percentage >= 70) {
+                resultClass = 'high';
+                confidenceText = 'Kemungkinan Tinggi';
+            } else if (percentage >= 40) {
+                resultClass = 'medium';
+                confidenceText = 'Kemungkinan Sedang';
+            }
+
+            html += `
+                    <div class="diagnosis-result ${resultClass}">
+                        <div class="cf-value">${percentage.toFixed(1)}%</div>
+                        <div class="disease-name">${result.name}</div>
+                        <div class="confidence-level">${confidenceText}</div>
+                        <small>CF Value: ${result.cf.toFixed(3)}</small>
+                        
+                        ${percentage >= 40 ? `
+                            <div class="recommendations">
+                                <h4>Rekomendasi Penanganan:</h4>
+                                <ul>
+                                    ${result.recommendations.map(rec => `<li>• ${rec}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+        });
+
+        resultsContainer.innerHTML = html;
+        resultsSection.classList.add('show');
+        document.getElementById('printBtn').style.display = 'inline-flex';
+
+        // Scroll to results
+        resultsSection.scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
+    // Reset form
+    function resetForm() {
+        document.getElementById('patientForm').reset();
+        symptoms.forEach(symptom => {
+            document.getElementById(symptom.code).value = '';
+        });
+        document.getElementById('resultsSection').classList.remove('show');
+        document.getElementById('printBtn').style.display = 'none';
+    }
+
+    // Print results
+    function printResults() {
+        window.print();
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function () {
+        initializeSymptoms();
+    });
+</script>
+<?= $this->endSection(); ?>

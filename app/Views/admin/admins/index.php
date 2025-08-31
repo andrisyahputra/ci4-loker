@@ -17,7 +17,7 @@
             <!-- <div class="d-flex justify-content-between "> -->
             <h4><?= $judul ?></h4>
             <a href="<?= url_to('admins.tambah') ?>" class="btn btn-success-gradien my-3" type="button">Tambah
-                Admin</a>
+                Akun</a>
             <!-- </div> -->
 
         </div>
@@ -28,10 +28,11 @@
                         <tr>
                             <th>#</th>
                             <th>Username</th>
-                            <th>email</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Nama Lengkap</th>
+                            <th>Role</th>
+                            <!-- <th>Age</th>
+                            <th>Start date</th> -->
+                            <!-- <th>Salary</th> -->
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,13 +42,14 @@
 
                             <tr>
                                 <td><?= ++$key ?></td>
-                                <td><?= $value['nama'] ?></td>
-                                <td><?= $value['email'] ?></td>
-                                <td> <img class="img-fluid table-avtar"
-                                        src="<?= base_url() ?>admin/assets/images/user/1.jpg" alt="profile">
+                                <td><?= $value['username'] ?></td>
+                                <td><?= $value['nama_lengkap'] ?></td>
+                                <td><?= $value['role'] ?></td>
+                                <!-- <td> <img class="img-fluid table-avtar"
+                                        src="<= base_url() ?>admin/assets/images/user/1.jpg" alt="profile">
                                 </td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td>2011/04/25</td> -->
+                                <!-- <td>$320,800</td> -->
                                 <td>
                                     <ul class="action">
                                         <li class="edit"> <a href="#"><i class="icon-pencil-alt"></i></a></li>

@@ -1,18 +1,50 @@
 <?= $this->extend('layouts/admin.php'); ?>
 
 <?= $this->section('content'); ?>
+
+<!-- Added sweet potato plant banner section -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card overflow-hidden">
+            <div class="card-body p-0">
+                <div class="position-relative"
+                    style="height: 200px; background: linear-gradient(135deg, #059669 0%, #10b981 100%);">
+                    <img src="<?= base_url() ?>assets/images/walpaper.jpg" width="1200" height="200"
+                        alt="Tanaman Ubi Jalar" class="w-100 h-100 object-cover position-absolute"
+                        style="object-fit: cover; opacity: 0.3;">
+                    <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+                        <h2 class="fw-bold mb-2">Sistem Pakar Diagnosis Penyakit Ubi Jalar</h2>
+                        <p class="mb-0 fs-5">Dinas Ketahanan Pangan dan Pertanian Kota Binjai</p>
+                        <div class="mt-3">
+                            <span class="badge bg-light text-dark px-3 py-2 me-2">
+                                <i class="fa fa-leaf me-1"></i> Teknologi Pertanian Modern
+                            </span>
+                            <span class="badge bg-light text-dark px-3 py-2">
+                                <i class="fa fa-microscope me-1"></i> Diagnosis Akurat
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
+    <!-- Updated dashboard cards for diagnosis system statistics -->
     <div class="col-xl-3 col-xl-40 col-md-6 proorder-md-1">
         <div class="card">
             <div class="card-header card-no-border pb-0">
                 <div class="header-top">
-                    <h4>Project Status</h4>
+                    <h4>Statistik Sistem Diagnosis</h4>
                     <div class="dropdown icon-dropdown">
                         <button class="btn dropdown-toggle" id="userdropdown" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown">
+                            <a class="dropdown-item" href="#">Mingguan</a>
+                            <a class="dropdown-item" href="#">Bulanan</a>
+                            <a class="dropdown-item" href="#">Tahunan</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -21,44 +53,44 @@
                     <div class="col-6">
                         <div class="btn-light1-primary b-r-10">
                             <div class="upcoming-box">
-                                <div class="upcoming-icon bg-primary"> <img
-                                        src="<?= base_url() ?>admin/assets/images/dashboard-2/svg-icon/calendar.png"
-                                        alt=""></div>
-                                <h6>Loker</h6>
-                                <p><?= $totalLoker ?> Projects</p>
+                                <div class="upcoming-icon bg-primary">
+                                    <i class="fa fa-users" style="font-size: 24px; color: white;"></i>
+                                </div>
+                                <h6>Total Pengguna</h6>
+                                <p><?= $user ?? 0 ?> Pengguna</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="btn-light1-secondary b-r-10">
                             <div class="upcoming-box">
-                                <div class="upcoming-icon bg-secondary"> <img
-                                        src="<?= base_url() ?>admin/assets/images/dashboard-2/svg-icon/check.png"
-                                        alt=""></div>
-                                <h6>Kategori</h6>
-                                <p><?= $totalKategori ?> Projects</p>
+                                <div class="upcoming-icon bg-secondary">
+                                    <i class="fa fa-stethoscope" style="font-size: 24px; color: white;"></i>
+                                </div>
+                                <h6>Total Diagnosis</h6>
+                                <p><?= $diagnosis ?? 0 ?> Diagnosis</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="btn-light1-warning b-r-10">
                             <div class="upcoming-box mb-0">
-                                <div class="upcoming-icon bg-warning"> <img
-                                        src="<?= base_url() ?>admin/assets/images/dashboard-2/svg-icon/processing.png"
-                                        alt=""></div>
-                                <h6>Admin</h6>
-                                <p><?= $totalAdmin ?> Projects</p>
+                                <div class="upcoming-icon bg-warning">
+                                    <i class="fa fa-bug" style="font-size: 24px; color: white;"></i>
+                                </div>
+                                <h6>Total Penyakit</h6>
+                                <p><?= $penyakit ?? 3 ?> Penyakit</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="btn-light1-tertiary b-r-10">
                             <div class="upcoming-box mb-0">
-                                <div class="upcoming-icon bg-tertiary"> <img
-                                        src="<?= base_url() ?>admin/assets/images/dashboard-2/svg-icon/total.png"
-                                        alt=""></div>
-                                <h6>Lamaran</h6>
-                                <p><?= $totalLamar ?> Projects</p>
+                                <div class="upcoming-icon bg-tertiary">
+                                    <i class="fa fa-list-alt" style="font-size: 24px; color: white;"></i>
+                                </div>
+                                <h6>Total Gejala</h6>
+                                <p><?= $gejala ?? 15 ?> Gejala</p>
                             </div>
                         </div>
                     </div>
@@ -66,1339 +98,209 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-5 col-xl-70 col-md-12 proorder-md-3">
+
+    <!-- Added disease frequency chart -->
+    <div class="col-xl-6 col-md-6">
         <div class="card">
             <div class="card-header card-no-border pb-0">
                 <div class="header-top">
-                    <h4>Recent Projects</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown2" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown2"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body p-0 projects">
-                <div class="table-responsive theme-scrollbar">
-                    <table class="table display overflow-hidden" id="recent-product" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </th>
-                                <th>Name</th>
-                                <th class="px-0">Team</th>
-                                <th>started </th>
-                                <th>finished</th>
-                                <th>Progress </th>
-                                <th class="px-2">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td class="px-0"> <a href="order-history.html">Behance Post </a></td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/1.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/2.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block">
-                                            <p class="bg-light rounded-circle">5+</p>
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td> 05Jan23</td>
-                                <td> 12Jan23</td>
-                                <td class="radial-chart-wrap p-0">
-                                    <div class="widgetsChart" id="widgetsChart1"></div>
-                                </td>
-                                <td>
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown3" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown3"><a
-                                                class="dropdown-item" href="#">Weekly </a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td class="px-0"><a href="order-history.html">Figma Design</a></td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/4.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/6.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/5.png"
-                                                alt=""></li>
-                                    </ul>
-                                </td>
-                                <td> 11Feb23</td>
-                                <td> 24Feb23</td>
-                                <td class="radial-chart-wrap p-0">
-                                    <div class="widgetsChart" id="widgetsChart2"></div>
-                                </td>
-                                <td>
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown4" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown4"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td class="px-0"><a href="order-history.html">Web Page</a></td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/7.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/8.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block">
-                                            <p class="bg-light rounded-circle">5+</p>
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td> 17Mar23</td>
-                                <td> 08Mar23</td>
-                                <td class="radial-chart-wrap p-0">
-                                    <div class="widgetsChart" id="widgetsChart3"></div>
-                                </td>
-                                <td>
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown5" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown5"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td class="px-0"><a href="order-history.html">CRM Admin</a></td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/12.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/11.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/12.png"
-                                                alt=""></li>
-                                    </ul>
-                                </td>
-                                <td> 05Sep23</td>
-                                <td> 13Sep23</td>
-                                <td class="radial-chart-wrap p-0">
-                                    <div class="widgetsChart" id="widgetsChart4"></div>
-                                </td>
-                                <td>
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown6" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown6"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-4 col-xl-50 col-md-6 proorder-md-2">
-        <div class="card">
-            <div class="card-header card-no-border">
-                <div class="header-top">
-                    <h4>Total Project</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown7" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown7"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body total-project">
-                <h5 class="f-w-500">Currently Running<span class="px-2 f-w-500 font-primary">28 Projects</span></h5>
-                <div id="total-project"></div>
-                <ul>
-                    <li class="d-flex align-items-center gap-2"> <span class="bg-primary"></span>
-                        <p>Completed</p>
-                    </li>
-                    <li class="d-flex align-items-center gap-2"><span class="bg-secondary"></span>
-                        <p>In Progress</p>
-                    </li>
-                    <li class="d-flex align-items-center gap-2"><span class="bg-warning"></span>
-                        <p>Terminated</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-5 col-xl-50 proorder-md-5">
-        <div class="card">
-            <div class="card-header card-no-border pb-0">
-                <div class="header-top">
-                    <h4>Projects Overview</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown8" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown8"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body pb-0">
-                <div class="current-sale-container order-container">
-                    <div class="overview-wrapper" id="orderoverview"> </div>
-                    <div class="back-bar-container">
-                        <div id="order-bar"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-7 col-xl-100 proorder-md-6">
-        <div class="card">
-            <div class="card-header card-no-border pb-0">
-                <div class="header-top">
-                    <h4>Client's activity of 2024</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown9" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown9"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body pt-0 client-activity px-0">
-                <div class="table-responsive theme-scrollbar">
-                    <table class="table display" id="client-product" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </th>
-                                <th>Project name</th>
-                                <th>timeline</th>
-                                <th>Project team </th>
-                                <th>Project Type</th>
-                                <th>Progress</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-shrink-0"><img
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/svg-icon/1.png"
-                                                alt=""></div>
-                                        <div class="flex-grow-1 ms-2"><a href="product-page.html">
-                                                <h5>Redesign Layout</h5>
-                                            </a>
-                                            <p>Anna Catmire</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-0">Sep 20 - Oct 26</td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/1.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/12.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/3.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block">
-                                            <p class="bg-light rounded-circle">5+</p>
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td> UI/UX Design </td>
-                                <td>
-                                    <div class="progress-showcase">
-                                        <div class="progress sm-progress-bar progress-border-primary">
-                                            <div class="progress-bar" role="progressbar" style="width: 40%"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown10" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown10"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-shrink-0"><img
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/svg-icon/2.png"
-                                                alt=""></div>
-                                        <div class="flex-grow-1 ms-2"><a href="product-page.html">
-                                                <h5>Login & Sign Up Ui</h5>
-                                            </a>
-                                            <p>John Elliot</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-0">Mar 16 - Apr 10</td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/4.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/5.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/6.png"
-                                                alt=""></li>
-                                    </ul>
-                                </td>
-                                <td> Designer</td>
-                                <td>
-                                    <div class="progress-showcase">
-                                        <div class="progress sm-progress-bar progress-border-secondary">
-                                            <div class="progress-bar" role="progressbar" style="width: 70%"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown11" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown11"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-shrink-0"><img
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/svg-icon/3.png"
-                                                alt=""></div>
-                                        <div class="flex-grow-1 ms-2"><a href="product-page.html">
-                                                <h5>Redesign CRM</h5>
-                                            </a>
-                                            <p>Ashley Hart</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-0">May 09 - Jun 02</td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/7.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/8.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/9.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block">
-                                            <p class="bg-light rounded-circle">5+</p>
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td> UI/UX Design</td>
-                                <td>
-                                    <div class="progress-showcase">
-                                        <div class="progress sm-progress-bar progress-border-warning">
-                                            <div class="progress-bar" role="progressbar" style="width: 50%"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown12" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown12"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-shrink-0"><img
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/svg-icon/4.png"
-                                                alt=""></div>
-                                        <div class="flex-grow-1 ms-2"><a href="product-page.html">
-                                                <h5>Front-End Website</h5>
-                                            </a>
-                                            <p>Dana Lemon</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-0">Jul 12 - Aug 20</td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/10.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/11.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/12.png"
-                                                alt=""></li>
-                                    </ul>
-                                </td>
-                                <td>Developer</td>
-                                <td>
-                                    <div class="progress-showcase">
-                                        <div class="progress sm-progress-bar progress-border-tertiary">
-                                            <div class="progress-bar" role="progressbar" style="width: 50%"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown13" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown13"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-shrink-0">
-                                            <svg>
-                                                <use href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#redesign">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2"><a href="product-page.html">
-                                                <h5>Square Dashboard</h5>
-                                            </a>
-                                            <p>John Elliot</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="project-dot">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0"><span class="bg-tertiary"></span></div>
-                                        <div class="flex-grow-1">
-                                            <h6>Document</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td> 24 Oct 2024</td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/4.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/2.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/8.png"
-                                                alt=""></li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <div class="progress-showcase">
-                                        <div class="progress sm-progress-bar progress-border-warning">
-                                            <div class="progress-bar" role="progressbar" style="width: 30%"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown14" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown14"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-shrink-0">
-                                            <svg>
-                                                <use
-                                                    href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#login-dashboard">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2"><a href="product-page.html">
-                                                <h5>Rules Post on Dribble</h5>
-                                            </a>
-                                            <p>Dana Lemon</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="project-dot">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0"><span class="bg-primary"></span></div>
-                                        <div class="flex-grow-1">
-                                            <h6>Document</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td> 12 Aug 2024</td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/14.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/18.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/3.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block">
-                                            <p class="bg-light rounded-circle">5+</p>
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <div class="progress-showcase">
-                                        <div class="progress sm-progress-bar progress-border-secondary">
-                                            <div class="progress-bar" role="progressbar" style="width: 60%"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown15" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown15"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-shrink-0">
-                                            <svg>
-                                                <use
-                                                    href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#redesign-CRM">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2"><a href="product-page.html">
-                                                <h5>Login & Sign Up UI</h5>
-                                            </a>
-                                            <p>Anna Catmire</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="project-dot">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0"><span class="bg-secondary"></span></div>
-                                        <div class="flex-grow-1">
-                                            <h6>Animation</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td> 19 Mar 2024</td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/6.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/18.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/19.png"
-                                                alt=""></li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <div class="progress-showcase">
-                                        <div class="progress sm-progress-bar progress-border-primary">
-                                            <div class="progress-bar" role="progressbar" style="width: 70%"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown16" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown16"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-shrink-0">
-                                            <svg>
-                                                <use
-                                                    href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#front-endwebsite">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2"><a href="product-page.html">
-                                                <h5>Square dashboard</h5>
-                                            </a>
-                                            <p>John Elliot</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="project-dot">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0"><span class="bg-tertiary"></span></div>
-                                        <div class="flex-grow-1">
-                                            <h6>Document</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td> 24 Oct 2024</td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/11.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/12.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/17.png"
-                                                alt=""></li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <div class="progress-showcase">
-                                        <div class="progress sm-progress-bar progress-border-tertiary">
-                                            <div class="progress-bar" role="progressbar" style="width: 50%"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown17" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown17"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-shrink-0">
-                                            <svg>
-                                                <use href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#redesign">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2"><a href="product-page.html">
-                                                <h5>Nft website Pages</h5>
-                                            </a>
-                                            <p>Dana Lemon</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="project-dot">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0"><span class="bg-warning"></span></div>
-                                        <div class="flex-grow-1">
-                                            <h6>Image</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td> 30 Jun 2024</td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/6.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/7.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/9.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block">
-                                            <p class="bg-light rounded-circle">5+</p>
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <div class="progress-showcase">
-                                        <div class="progress sm-progress-bar progress-border-warning">
-                                            <div class="progress-bar" role="progressbar" style="width: 40%"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown18" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown18"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <label class="form-check-label"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-shrink-0">
-                                            <svg>
-                                                <use
-                                                    href="<?= base_url() ?>admin/assets/svg/icon-sprite.svg#login-dashboard">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2"><a href="product-page.html">
-                                                <h5>Rules Post on Dribble</h5>
-                                            </a>
-                                            <p>John Elliot</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="project-dot">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0"><span class="bg-primary"></span></div>
-                                        <div class="flex-grow-1">
-                                            <h6>Document</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td> 12 Aug 2024</td>
-                                <td class="customers text-center social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/15.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/2.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="img-30 rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/19.png"
-                                                alt=""></li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <div class="progress-showcase">
-                                        <div class="progress sm-progress-bar progress-border-secondary">
-                                            <div class="progress-bar" role="progressbar" style="width: 20%"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="dropdown icon-dropdown">
-                                        <button class="btn dropdown-toggle" id="userdropdown19" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                class="icon-more-alt"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown19"><a
-                                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                                href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-xl-50 col-md-6 proorder-md-7">
-        <div class="card">
-            <div class="card-header card-no-border pb-0">
-                <div class="header-top">
-                    <h4>Website Design</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body designer-card">
-                <div>
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="flex-shrink-0"><img
-                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/16.png" alt="user"></div>
-                        <div class="flex-grow-1"><a href="product-page.html">
-                                <h5>Square Dashboard</h5>
-                            </a>
-                            <p>karson123@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="design-button">
-                        <button class="btn bg-light-primary font-primary f-w-500">UX Design</button>
-                        <button class="btn bg-light-secondary font-secondary f-w-500">3D Deisgn</button>
-                    </div>
-                    <div class="ratting-button">
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">12 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Issues</span></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">5 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Resolved </span></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">7 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Comment</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <h5 class="f-w-500 pb-2">Task Completed: 6/10</h5>
-                    <div class="progress progress-striped-primary b-r-2">
-                        <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="10"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-xl-50 col-md-6 proorder-md-8">
-        <div class="card">
-            <div class="card-header card-no-border pb-0">
-                <div class="header-top">
-                    <h4>Social Post Design</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown21" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown21"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body designer-card">
-                <div>
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="flex-shrink-0"><img
-                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/18.png" alt="user"></div>
-                        <div class="flex-grow-1"><a href="product-page.html">
-                                <h5>Cronin Lewis</h5>
-                            </a>
-                            <p>cronin324@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="design-button">
-                        <button class="btn bg-light-primary font-primary f-w-500">Illustration</button>
-                        <button class="btn bg-light-warning font-warning f-w-500">Video Editing</button>
-                    </div>
-                    <div class="ratting-button">
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">10 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Issues</span></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">9 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Resolved </span></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">5 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Comment</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <h5 class="f-w-500 pb-2">Task Completed: 4/10</h5>
-                    <div class="progress progress-striped-secondary b-r-2">
-                        <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="10"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-xl-50 col-md-6 proorder-md-9">
-        <div class="card">
-            <div class="card-header card-no-border pb-0">
-                <div class="header-top">
-                    <h4>Podcast Web design</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown22" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown22"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body designer-card">
-                <div>
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="flex-shrink-0"><img
-                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/17.png" alt="user"></div>
-                        <div class="flex-grow-1"><a href="product-page.html">
-                                <h5>Rau Foster</h5>
-                            </a>
-                            <p>raufoster23@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="design-button">
-                        <button class="btn bg-light-tertiary font-tertiary f-w-500">2D Design</button>
-                        <button class="btn bg-light-secondary font-secondary f-w-500">Dribbble Post</button>
-                    </div>
-                    <div class="ratting-button">
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">16 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Issues</span></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">10 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Resolved </span></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">7 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Comment</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <h5 class="f-w-500 pb-2">Task Completed: 8/10</h5>
-                    <div class="progress progress-striped-warning b-r-2">
-                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="10"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-xl-50 col-md-6 proorder-md-10">
-        <div class="card">
-            <div class="card-header card-no-border pb-0">
-                <div class="header-top">
-                    <h4>Crypto Dashboard</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown23" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown23"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body designer-card">
-                <div>
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="flex-shrink-0"><img
-                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/19.png" alt="user"></div>
-                        <div class="flex-grow-1"><a href="product-page.html">
-                                <h5>Volkman Melisa</h5>
-                            </a>
-                            <p>volkman839@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="design-button">
-                        <button class="btn bg-light-primary font-primary f-w-500">Design System</button>
-                        <button class="btn bg-light-secondary font-secondary f-w-500">Branding</button>
-                    </div>
-                    <div class="ratting-button">
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">04 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Issues</span></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">5 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Resolved </span></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="d-flex align-items-center gap-2 mb-0">
-                                <div class="flex-shrink-0">
-                                    <p class="f-w-500">7 </p>
-                                </div>
-                                <div class="flex-grow-1"><span class="f-w-500">Comment</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <h5 class="f-w-500 pb-2">Task Completed: 2/10</h5>
-                    <div class="progress progress-striped-tertiary b-r-2">
-                        <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="10"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-xl-40 col-md-6 proorder-md-11">
-        <div class="card">
-            <div class="card-header card-no-border pb-0">
-                <div class="header-top">
-                    <h4>Today’s Tasks</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown24" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown24"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
+                    <h4>Penyakit Paling Sering Didiagnosis</h4>
                 </div>
             </div>
             <div class="card-body">
-                <ul class="task-box">
-                    <li class="bg-light">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h6 class="font-primary f-w-500">NFT illustrarion Package</h6>
-                            <div class="dropdown icon-dropdown">
-                                <button class="btn dropdown-toggle" id="userdropdown25" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                        class="icon-more-alt"></i></button>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown25"><a
-                                        class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                        href="#">Monthly</a><a class="dropdown-item" href="#">Yearly </a></div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="flex-shrink-0"><img
-                                    src="<?= base_url() ?>admin/assets/images/dashboard-2/user/17.png" alt="user"></div>
-                            <div class="flex-grow-1">
-                                <p class="mb-0">Assigned to</p><a href="product-page.html">
-                                    <h5>Hackett Yessenia </h5>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="bg-light">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h6 class="font-secondary f-w-500">Podcast landing Page </h6>
-                            <div class="dropdown icon-dropdown">
-                                <button class="btn dropdown-toggle" id="userdropdown26" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                        class="icon-more-alt"></i></button>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown26"><a
-                                        class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                        href="#">Monthly</a><a class="dropdown-item" href="#">Yearly </a></div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="flex-shrink-0">
-                                <div class="customers social-group">
-                                    <ul>
-                                        <li class="d-inline-block"><img class="rounded-circle border-0"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/13.png"
-                                                alt=""></li>
-                                        <li class="d-inline-block"><img class="rounded-circle"
-                                                src="<?= base_url() ?>admin/assets/images/dashboard-2/user/14.png"
-                                                alt=""></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1">
-                                <p class="mb-0">Assigned to</p><a href="product-page.html">
-                                    <h5>schneider.. </h5>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="bg-light">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h6 class="font-warning f-w-500">Delivery Food App</h6>
-                            <div class="dropdown icon-dropdown">
-                                <button class="btn dropdown-toggle" id="userdropdown27" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                        class="icon-more-alt"></i></button>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown27"><a
-                                        class="dropdown-item" href="#">Weekly</a><a class="dropdown-item"
-                                        href="#">Monthly</a><a class="dropdown-item" href="#">Yearly </a></div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="flex-shrink-0"><img
-                                    src="<?= base_url() ?>admin/assets/images/dashboard-2/user/15.png" alt="user"></div>
-                            <div class="flex-grow-1">
-                                <p class="mb-0">Assigned to</p><a href="product-page.html">
-                                    <h5>Mahdi Gholizadeh</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <div class="chart-container">
+                    <canvas id="diseaseChart" width="400" height="200"></canvas>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-xl-5 col-xl-70 proorder-md-13">
+
+    <!-- Added recent diagnosis table -->
+    <div class="col-xl-3 col-md-6">
         <div class="card">
             <div class="card-header card-no-border pb-0">
                 <div class="header-top">
-                    <h4>Running Events</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown28" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown28"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
+                    <h4>Diagnosis Terbaru</h4>
                 </div>
             </div>
-            <div class="card-body rinning-col">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="running-box">
-                            <div class="d-flex align-items-center justify-content-between gap-2">
-                                <div class="flex-grow-1"><a href="product-page.html">
-                                        <h5>Brooklyn Simmons</h5>
-                                    </a>
-                                    <p>Web Manager </p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <div class="customers social-group">
-                                        <ul>
-                                            <li class="d-inline-block"><img class="rounded-circle"
-                                                    src="<?= base_url() ?>admin/assets/images/dashboard-2/user/1.png"
-                                                    alt=""></li>
-                                            <li class="d-inline-block"><img class="rounded-circle"
-                                                    src="<?= base_url() ?>admin/assets/images/dashboard-2/user/2.png"
-                                                    alt=""></li>
-                                            <li class="d-inline-block"><img class="rounded-circle"
-                                                    src="<?= base_url() ?>admin/assets/images/dashboard-2/user/3.png"
-                                                    alt=""></li>
-                                            <li class="d-inline-block">
-                                                <p class="bg-light rounded-circle">5+</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>With Asana, you can bring your teams, work, and apps from everywhere in one tool.
-                                Workflows can be modified.</p>
-                            <ul class="d-flex align-items-center gap-3">
-                                <li class="bg-light">
-                                    <h5>$34,930</h5>
-                                    <p>Disbursed Budget</p>
-                                </li>
-                                <li class="bg-light">
-                                    <h5>$65,789</h5>
-                                    <p>Planned</p>
-                                </li>
-                            </ul>
+            <div class="card-body">
+                <div class="recent-diagnosis">
+                    <?php if (isset($recentDiagnosis) && !empty($recentDiagnosis)): ?>
+                    <?php foreach ($recentDiagnosis as $diagnosis): ?>
+                    <div class="diagnosis-item mb-3 p-2 border-bottom">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <button class="btn bg-primary">Upgrade Plan</button>
-                                <button class="btn bg-secondary">View Project</button>
+                                <h6 class="mb-1"><?= $diagnosis['nama_pasien'] ?></h6>
+                                <small class="text-muted"><?= $diagnosis['penyakit_terdiagnosis'] ?></small>
+                            </div>
+                            <div class="text-end">
+                                <span
+                                    class="badge bg-primary"><?= number_format($diagnosis['nilai_cf_tertinggi'] * 100, 1) ?>%</span>
+                                <br>
+                                <small
+                                    class="text-muted"><?= date('d/m/Y', strtotime($diagnosis['tanggal_diagnosis'])) ?></small>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 running-events"><img
-                            src="<?= base_url() ?>admin/assets/images/dashboard-2/round.png" alt="">
-                        <div> <img class="running-events-image"
-                                src="<?= base_url() ?>admin/assets/images/dashboard-2/events-bg.png" alt=""></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-4 col-xl-100 col-md-6 proorder-md-12">
-        <div class="card">
-            <div class="card-header card-no-border pb-0">
-                <div class="header-top">
-                    <h4>Online Course Timeline</h4>
-                    <div class="dropdown icon-dropdown">
-                        <button class="btn dropdown-toggle" id="userdropdown29" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="icon-more-alt"></i></button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown29"><a
-                                class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a
-                                class="dropdown-item" href="#">Yearly</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body overflow-auto theme-scrollbar">
-                <div class="timeline-calendar custom-scrollbar">
-                    <div class="custom-calendar" id="calendar-container">
-                        <div class="time-line" id="calendar"></div>
-                    </div>
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                    <p class="text-muted text-center">Belum ada diagnosis</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Added monthly diagnosis trend chart -->
+<!-- <div class="row mt-4">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-header card-no-border pb-0">
+                <div class="header-top">
+                    <h4>Tren Diagnosis Bulanan</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="monthlyTrendChart" width="400" height="150"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-header card-no-border pb-0">
+                <div class="header-top">
+                    <h4>Tingkat Akurasi Diagnosis</h4>
+                </div>
+            </div>
+            <div class="card-body text-center">
+                <div class="accuracy-circle mb-3">
+                    <canvas id="accuracyChart" width="150" height="150"></canvas>
+                </div>
+                <h5 class="text-primary"><?= $accuracyRate ?? '85.2' ?>%</h5>
+                <p class="text-muted">Tingkat Kepercayaan Rata-rata</p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Added Chart.js for visualizations -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Disease frequency chart
+// const diseaseData = <= json_encode($diseaseFrequency ?? [
+//         ['Busuk Umbi', 45],
+//         ['Hawar Daun', 32],
+//         ['Kudis (Scab)', 23]
+//     ]) ?>;
+
+// const ctx1 = document.getElementById('diseaseChart').getContext('2d');
+// new Chart(ctx1, {
+//     type: 'doughnut',
+//     data: {
+//         labels: diseaseData.map(item => item[0]),
+//         datasets: [{
+//             data: diseaseData.map(item => item[1]),
+//             backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'],
+//             borderWidth: 2,
+//             borderColor: '#fff'
+//         }]
+//     },
+//     options: {
+//         responsive: true,
+//         plugins: {
+//             legend: {
+//                 position: 'bottom'
+//             }
+//         }
+//     }
+// });
+const diseaseData = <?= json_encode($diseaseFrequency) ?>;
+
+const ctx1 = document.getElementById('diseaseChart').getContext('2d');
+new Chart(ctx1, {
+    type: 'doughnut',
+    data: {
+        labels: diseaseData.map(item => item[0]),
+        datasets: [{
+            data: diseaseData.map(item => item[1]),
+            backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'],
+            borderWidth: 2,
+            borderColor: '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom'
+            },
+            tooltip: {
+                callbacks: {
+                    label: ctx => `${ctx.label}: ${ctx.raw}`
+                }
+            }
+        }
+    }
+});
+
+// Monthly trend chart
+const monthlyData = <?= json_encode($monthlyTrend ?? [
+        ['Jan', 12],
+        ['Feb', 19],
+        ['Mar', 15],
+        ['Apr', 22],
+        ['May', 18],
+        ['Jun', 25]
+    ]) ?>;
+
+const ctx2 = document.getElementById('monthlyTrendChart').getContext('2d');
+new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: monthlyData.map(item => item[0]),
+        datasets: [{
+            label: 'Jumlah Diagnosis',
+            data: monthlyData.map(item => item[1]),
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+// Accuracy chart
+const ctx3 = document.getElementById('accuracyChart').getContext('2d');
+new Chart(ctx3, {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            data: [<?= $accuracyRate ?? 85.2 ?>, <?= 100 - ($accuracyRate ?? 85.2) ?>],
+            backgroundColor: ['#10b981', '#e5e7eb'],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        responsive: true,
+        cutout: '70%',
+        plugins: {
+            legend: {
+                display: false
+            }
+        }
+    }
+});
+</script>
+
 <?= $this->endSection(); ?>
